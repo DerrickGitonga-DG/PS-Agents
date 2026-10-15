@@ -141,3 +141,14 @@ How the agent perceives the environment:
 
 **Additional property (not one of the five):** **Continuous.** Speed, steering angle, hitch angle, position and time all take continuous values. Another common one is **Unknown/Known**: the agent knows the rules of physics and traffic, but not every road or situation in advance.
 
+
+---
+
+## Question 2
+
+### 2.1 Directed Graph of Kenya's Highway Network
+
+### 2.2 Search Tree Using Abstraction
+
+### 2.3 Nodes, Edges and Road Connections
+
