@@ -144,11 +144,102 @@ How the agent perceives the environment:
 
 ---
 
-## Question 2
+---
+
+## Question 2: Directed Graph and Search Tree
 
 ### 2.1 Directed Graph of Kenya's Highway Network
 
+A directed graph is used to represent the highway network connecting Nairobi to Kisumu. The graph is represented as \(G=(V,E)\), where \(V\) is the set of towns (vertices) and \(E\) is the set of road connections (edges). Each vertex represents a town, while each directed edge represents a road connection from one town to another.
+
+The network represents towns along the selected route through the Central Highlands, Rift Valley and Lake Victoria Basin regions. The locations used are Nairobi, Rungiri, Gitaru, Limuru, Kimende Township, Gilgil, Nakuru East, Salga, Kericho, Kapsoit, Kaitui, Awasi, Ahero, Orongo and Kisumu.
+
+The graph abstracts away individual road bends, roadside buildings and other unnecessary physical details, retaining the towns and road connections needed for route planning.
+
+#### Directed Graph
+
+```mermaid
+flowchart LR
+    N[Nairobi] --> R[Rungiri]
+    R --> G[Gitaru]
+    G --> L[Limuru]
+    L --> K[Kimende Township]
+    K --> GI[Gilgil]
+    GI --> NE[Nakuru East]
+    NE --> S[Salga]
+    S --> KE[Kericho]
+    KE --> KP[Kapsoit]
+    KP --> KA[Kaitui]
+    KA --> A[Awasi]
+    A --> AH[Ahero]
+    AH --> O[Orongo]
+    O --> KI[Kisumu]
+```
+
+The arrows indicate the direction of travel from Nairobi towards Kisumu. The graph is a simplified representation of the collected route data. The actual road connections and directionality between consecutive towns should be confirmed using Google Maps and the highway map presented in class.
+
 ### 2.2 Search Tree Using Abstraction
 
+A search tree represents the possible paths explored by the searching agent from the initial state to the goal state. The initial state is Nairobi, and the goal state is Kisumu. Intermediate towns represent possible states encountered while travelling along the highway network.
+
+Abstraction is applied by representing each town as a single state and each road connection as an edge. The model does not represent every bend, junction detail or roadside feature because these details are unnecessary for comparing town-to-town routes.
+
+#### Search Tree
+
+```mermaid
+flowchart TD
+    N[Nairobi - Initial State]
+    N --> R[Rungiri]
+    R --> G[Gitaru]
+    G --> L[Limuru]
+    L --> K[Kimende Township]
+    K --> GI[Gilgil]
+    GI --> NE[Nakuru East]
+    NE --> S[Salga]
+    S --> KE[Kericho]
+    KE --> KP[Kapsoit]
+    KP --> KA[Kaitui]
+    KA --> A[Awasi]
+    A --> AH[Ahero]
+    AH --> O[Orongo]
+    O --> KI[Kisumu - Goal State]
+```
+
+This tree illustrates one candidate path from Nairobi to Kisumu. In the complete highway network, the search tree can branch at junctions where alternative roads are available. The agent compares these alternatives using their accumulated path costs.
+
 ### 2.3 Nodes, Edges and Road Connections
+
+The vertices are the towns along the route. The edges are the road connections between consecutive towns. Each edge is assigned a cost based on the road distance between its endpoints.
+
+The collected cumulative distances from Nairobi are:
+
+| Town | Cumulative distance from Nairobi (km) |
+|---|---:|
+| Nairobi | 0 |
+| Rungiri | 19 |
+| Gitaru | 23.1 |
+| Limuru | 38.1 |
+| Kimende Township | 52.6 |
+| Gilgil | 121 |
+| Nakuru East | 151 |
+| Salga | 188 |
+| Kericho | 266 |
+| Kapsoit | 277 |
+| Kaitui | 288 |
+| Awasi | 308 |
+| Ahero | 326 |
+| Orongo | 341 |
+| Kisumu | 352 |
+
+These values are cumulative distances rather than individual road-segment distances. For consecutive towns on the same route, the segment cost can be calculated as:
+
+\[
+c(A,B)=D(B)-D(A)
+\]
+
+where \(D(A)\) and \(D(B)\) are the cumulative distances of towns \(A\) and \(B\) from Nairobi.
+
+The cumulative distances and town order must be verified against the same Google Maps route before the differences are treated as actual edge costs.
+
+
 
