@@ -41,7 +41,7 @@ Everything the agent operates in:
 - **Other road users:** cars, motorbikes (boda-bodas), matatus, buses, other trucks, pedestrians, cyclists, animals
 - **Infrastructure:** traffic lights, road signs, lane markings, weigh bridges, toll points, loading bays and depots
 - **Conditions:** rain, fog, darkness, glare, wet or slippery surfaces
-- **Communication:** GPS satellites, mobile network, traffic information, and a human operator or control centre
+- **Communication:** GPS satellites, mobile network, traffic information and a human operator or control centre
 
 ### 2.3 Actuators
 How the agent acts on the environment:
@@ -87,8 +87,8 @@ How the agent perceives the environment:
 **Classification: PARTIALLY OBSERVABLE**
 
 - A fully observable environment lets the agent's sensors see the complete state of the environment at every point in time.
-- The trailer's sensors have limited range and field of view, and can be affected by fog, rain, darkness or dirt.
-- The agent cannot see around corners, through other vehicles, or into blind spots behind the trailer.
+- The trailer's sensors have limited range and field of view and can be affected by fog, rain, darkness or dirt.
+- The agent cannot see around corners, through other vehicles or into blind spots behind the trailer.
 - It cannot know the intentions of other drivers or pedestrians (for example, whether a car is about to cut in).
 - Some internal states, such as the exact road friction or load shift, can only be estimated.
 - **Implication:** the agent must keep an **internal state (model)** of the world and update it over time.
@@ -105,7 +105,7 @@ How the agent perceives the environment:
 ### 3.3 Episodic vs. Sequential
 **Classification: SEQUENTIAL**
 
-- In an episodic environment, each decision is independent, and the current choice does not affect future ones.
+- In an episodic environment, each decision is independent and the current choice does not affect future ones.
 - Here every action affects later states. Speed, lane position and braking now determine following distance, trailer stability and the options available seconds later.
 - A wrong early decision (for example, entering a bend too fast) can cause a crash later.
 - The whole trip is a chain of connected decisions towards the goal.
@@ -115,10 +115,10 @@ How the agent perceives the environment:
 **Classification: DYNAMIC**
 
 - A static environment does not change while the agent is deciding what to do.
-- The road environment keeps changing: vehicles move, traffic lights change, pedestrians cross, and weather shifts, whether or not the agent has finished deciding.
+- The road environment keeps changing: vehicles move, traffic lights change, pedestrians cross and weather shifts, whether or not the agent has finished deciding.
 - Delay in decision-making can mean a collision.
 - The environment can even change while the agent is acting (for example, a vehicle cuts in during an overtake).
-- **Implication:** decisions must be made in **real time**, and the agent must keep sensing and replanning continuously.
+- **Implication:** decisions must be made in **real time** and the agent must keep sensing and replanning continuously.
 
 ### 3.5 Single Agent vs. Multiagent
 **Classification: MULTIAGENT**
@@ -126,7 +126,7 @@ How the agent perceives the environment:
 - A single-agent environment has only one agent acting; a multiagent environment has other agents whose behaviour affects the agent's performance.
 - The road contains many other agents: other drivers, motorcyclists, cyclists, pedestrians, other autonomous vehicles and traffic police.
 - **Competitive aspects:** competing for road space, lane merging, overtaking, parking and loading-bay space.
-- **Cooperative aspects:** avoiding collisions, giving way, signalling intentions, and platooning with other trucks.
+- **Cooperative aspects:** avoiding collisions, giving way, signalling intentions and platooning with other trucks.
 - **Implication:** the agent must **predict the behaviour of others** and communicate its own intentions (indicators, lights, V2X).
 
 ### 3.6 Environment Properties Summary Table
